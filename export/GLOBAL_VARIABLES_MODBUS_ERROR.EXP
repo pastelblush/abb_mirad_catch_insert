@@ -1,0 +1,148 @@
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @GLOBAL_VARIABLE_LIST := 'Global_Variables_Modbus_Error' *)
+(* @PATH := '' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+VAR_GLOBAL
+(***************ERROR*******************)
+	E_EmgStop AT %MX0.300.0: BOOL;
+	E_IndexRun AT %MX0.300.1: BOOL;
+	E_SafetyDoorOpen AT %MX0.300.2: BOOL;
+	E_AirLow AT %MX0.300.3: BOOL;
+	E_OriginSch  AT %MX0.300.4: BOOL;
+	E_WibondErr AT %MX0.300.5:BOOL;
+	W_BypassOn AT %MX0.300.6:BOOL;
+(******************P1 LOADING******************)
+	E1_SingOffsetBwd AT %MX0.301.0:BOOL;
+	E1_SingOffsetFwd AT %MX0.301.1:BOOL;
+	E1_SingOpn AT %MX0.301.2:BOOL;
+	E1_SingCls AT %MX0.301.3:BOOL;
+	E1_SingAccOpn AT %MX0.301.4:BOOL;
+	E1_SingAccCls AT %MX0.301.5:BOOL;
+	E1_WPOrientationUp AT %MX0.301.6:BOOL;
+	E1_WPOrientationDn AT %MX0.301.7:BOOL;
+	E1_PnpBwd AT %MX0.302.0:BOOL;
+	E1_PnpFwd AT %MX0.302.1:BOOL;
+	E1_PnPUp AT %MX0.302.2:BOOL;
+	E1_PnPDn AT %MX0.302.3:BOOL;
+	E1_PnpRotBwd AT %MX0.302.4:BOOL;
+	E1_PnpRotFwd AT %MX0.302.5:BOOL;
+	E1_PnpOpn1 AT %MX0.302.6:BOOL;
+	E1_PnpCls1 AT %MX0.302.7:BOOL;
+	E1_PnpOpn2 AT %MX0.303.0:BOOL;
+	E1_PnpCls2 AT %MX0.303.1:BOOL;
+	E1_BackJigRelBwd  AT %MX0.303.2:BOOL;
+	E1_BackJigRelFwd AT %MX0.303.3:BOOL;
+	E1_SideJigRelBwd AT %MX0.303.4:BOOL;
+	E1_SideJigRelFwd AT %MX0.303.5:BOOL;
+	E1_WrongOrientation AT %MX0.303.6:BOOL;
+	E1_WPStuck  AT %MX0.303.7:BOOL;
+
+(******************P2 CHECK ID******************)
+	E2_iDCheckBwd AT %MX0.304.0:BOOL;
+	E2_iDCheckFwd AT %MX0.304.1:BOOL;
+	E2_3TimesNG AT %MX0.314.7:BOOL;
+
+(******************P3 CATCH INSERTION******************)
+	E3_Sing1Opn AT %MX0.305.0:BOOL;
+	E3_Sing1Cls AT %MX0.305.1:BOOL;
+	E3_Sing2Opn AT %MX0.305.2:BOOL;
+	E3_Sing2Cls AT %MX0.305.3:BOOL;
+	E3_Sing3Opn AT %MX0.305.4:BOOL;
+	E3_Sing3Cls AT %MX0.305.5:BOOL;
+	E3_Sing4Opn AT %MX0.305.6:BOOL;
+	E3_Sing4Cls AT %MX0.305.7:BOOL;
+	E3_PushBwd AT %MX0.306.0:BOOL;
+	E3_PushFwd AT %MX0.306.1:BOOL;
+	E3_LocUp AT %MX0.306.2:BOOL;
+	E3_LocDn AT %MX0.306.3:BOOL;
+	E3_PrePushBwd AT %MX0.306.4:BOOL;
+	E3_PrePushFwd AT %MX0.306.5:BOOL;
+	E3_CatchBlockDn AT %MX0.306.6:BOOL;
+	E3_CatchBlockUp AT %MX0.306.7:BOOL;
+
+	E3_Lane1FeedErr AT %MX0.312.0:BOOL;
+	E3_Lane2FeedErr AT %MX0.312.1:BOOL;
+	E3_Lane3FeedErr AT %MX0.312.2:BOOL;
+	E3_Lane4FeedErr AT %MX0.312.3:BOOL;
+	E3_CatchDetectedErr AT %MX0.312.4:BOOL;
+	E3_Vision1Timeout AT %MX0.312.5:BOOL;
+	E3_Vision2Timeout AT %MX0.312.6:BOOL;
+	E3_Vision1NotRdy AT %MX0.312.7:BOOL;
+	E3_Vision2NotRdy AT %MX0.313.0:BOOL;
+	E3_Lane1WrongCatch AT %MX0.313.1:BOOL;
+	E3_Lane2WrongCatch AT %MX0.313.2:BOOL;
+	E3_Lane3WrongCatch AT %MX0.313.3:BOOL;
+	E3_Lane4WrongCatch AT %MX0.313.4:BOOL;
+	E3_LineerCoverMIssing AT %MX0.315.0:BOOL;
+
+
+
+(******************P4 CATCH CHECK******************)
+	E4_CheckBwd AT %MX0.307.0:BOOL;
+	E4_CheckFwd AT %MX0.307.1:BOOL;
+	E4_3TimesNG AT %MX0.313.5:BOOL;
+
+(******************P5 NG UNLOADING******************)
+	E5_PnpBwd AT %MX0.307.2:BOOL;
+	E5_PnpFwd AT %MX0.307.3:BOOL;
+	E5_PnPUp AT %MX0.307.4:BOOL;
+	E5_PnPDn AT %MX0.307.5:BOOL;
+	E5_PnpOpn AT %MX0.307.6:BOOL;
+	E5_PnpCls AT %MX0.307.7:BOOL;
+	E5_PnpPusherBwd AT %MX0.308.0:BOOL;
+	E5_PnpPusherFwd AT %MX0.308.1:BOOL;
+	E5_BackJigRelFwd  AT %MX0.308.2:BOOL;
+	E5_BackJigRelBwd AT %MX0.308.3:BOOL;
+	E5_SideJigRelFwd AT %MX0.308.4:BOOL;
+	E5_SideJigRelBwd AT %MX0.308.5:BOOL;
+	E5_WPStuck  AT %MX0.308.6:BOOL;
+
+(******************P6  GOOD UNLOADING******************)
+	E6_PnpBwd  AT %MX0.309.0:BOOL;
+	E6_PnpFwd AT %MX0.309.1:BOOL;
+	E6_PnPUp AT %MX0.309.2:BOOL;
+	E6_PnPDn AT %MX0.309.3:BOOL;
+	E6_PnpRotBwd AT %MX0.309.4:BOOL;
+	E6_PnpRotFwd AT %MX0.309.5:BOOL;
+	E6_PnpOpn AT %MX0.309.6:BOOL;
+	E6_PnpCls AT %MX0.309.7:BOOL;
+	E6_BackJigRelFwd AT %MX0.310.0:BOOL;
+	E6_BackJigRelBwd AT %MX0.310.1:BOOL;
+	E6_SideJigRelFwd AT %MX0.310.2:BOOL;
+	E6_SideJigRelBwd AT %MX0.310.3:BOOL;
+	E6_SingOpn AT %MX0.310.4:BOOL;
+	E6_SingCls AT %MX0.310.5:BOOL;
+	E6_EmptyCheckUp AT %MX0.310.6:BOOL;
+	E6_EmptyCheckDn AT %MX0.310.7:BOOL;
+	E6_WPStuck  AT %MX0.311.0:BOOL;
+	E6_EmptyChkCamTO  AT %MX0.311.1:BOOL;
+	E6_JigNotEmpty	AT %MX0.311.2:BOOL;
+
+
+(******************WARNING******************)
+	W1_CvFull AT %MX0.313.7:BOOL;
+	W1_P1NoWP AT %MX0.314.0:BOOL;
+
+	W5_OrgCvFull AT %MX0.312.0:BOOL;
+	W5_CvFull AT %MX0.314.1:BOOL;
+	W5_CVClearToPlace AT %MX0.315.1:BOOL;
+
+	W6_OrgCvFull AT %MX0.312.1:BOOL;
+	W6_CvFull  AT %MX0.313.6:BOOL;
+	W6_CVClearToPlace AT %MX0.314.2:BOOL;(******************************)
+
+	W3_Lane1NoCatch AT %MX0.314.2:BOOL;
+	W3_Lane2NoCatch AT %MX0.314.3:BOOL;
+	W3_Lane3NoCatch AT %MX0.314.4:BOOL;
+	W3_Lane4NoCatch AT %MX0.314.5:BOOL;
+	W3_BowlEmpty AT %MX0.314.6:BOOL;
+END_VAR
+
+(* @OBJECT_END := 'Global_Variables_Modbus_Error' *)
+(* @CONNECTIONS := Global_Variables_Modbus_Error
+FILENAME : ''
+FILETIME : 0
+EXPORT : 0
+NUMOFCONNECTIONS : 0
+*)

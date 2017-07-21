@@ -1,0 +1,51 @@
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @GLOBAL_VARIABLE_LIST := 'Global_Variables_TouchPanel2' *)
+(* @PATH := '' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+VAR_GLOBAL
+(******************GLOBAL HMI RECIPE******************)
+
+
+	strData0_Mirad 	AT %MD1.2500 :STRING(20);	(*Generate Model And Pole*)
+	strData1_Mirad 	AT %MD1.2600:STRING(20);		(*Product Number-'2CDS201159R1256';*)
+	strData2_Mirad 	AT %MD1.2700:STRING(18);		(*Pole Number-'2CDS201108R0006';*)
+	strData3_Mirad 	AT %MD1.2800:STRING(18);		(*NA Pole Number-'2CDS201108R0006';*)
+	strData4_Mirad 	AT %MD1.2900:STRING(18);		(*Barcode- '4016779904308';*)
+	strData5_Mirad 	AT %MD1.2000 :STRING(25);	(*Model Description-'Disc SHD201/16';*)
+	strData6_Mirad 	AT %MD1.2200 :STRING(25);	(*Number Of Pole*)
+	intData7  			AT %MD1.2300:INT;				(*Model Type-0 Non : 1 SU : 2 Mirad*)
+	intData8 			AT %MD1.2400:INT;				(*Catch Type 0 No Spring ; 1 Spring*)
+	strData9_Mirad	:STRING(25);
+
+
+	T_LoadNewModel 	AT %MX0.1122.0:BOOL;
+	T_Auto_2 				AT %MX0.1122.1:BOOL;
+	T_LineStart_2 		AT %MX0.1122.2:BOOL;
+	T_LineStop_2 		AT %MX0.1122.3:BOOL;
+	T_Manual_2 			AT %MX0.1122.4:BOOL;
+	T_McHome_2 		AT %MX0.1122.5:BOOL;
+
+	T_AutoModePL_2 	AT %MX0.1123.0:BOOL;
+	T_ManualModePL_2 	AT %MX0.1123.1:BOOL;
+	T_McHomedPL_2 	AT %MX0.1123.2:BOOL;
+	T_McReadyPL_2 		AT %MX0.1123.3:BOOL;
+	T_McRunningPL_2 	AT %MX0.1123.4:BOOL;
+
+
+
+(*No Address*)
+	T_McError:BOOL;
+	T_Model_Type  : WORD;
+	S_Model_HighAmp: BOOL;
+	S_Model_MIrad: BOOL;
+	S_Model_None: BOOL;
+END_VAR
+
+(* @OBJECT_END := 'Global_Variables_TouchPanel2' *)
+(* @CONNECTIONS := Global_Variables_TouchPanel2
+FILENAME : ''
+FILETIME : 0
+EXPORT : 0
+NUMOFCONNECTIONS : 0
+*)

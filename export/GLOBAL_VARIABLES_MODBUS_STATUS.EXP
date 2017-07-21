@@ -1,0 +1,194 @@
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @GLOBAL_VARIABLE_LIST := 'Global_Variables_Modbus_Status' *)
+(* @PATH := '' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+VAR_GLOBAL
+(*************************************************************************************)
+(***************STATUS OF STATION*******************)
+(*************************************************************************************)
+	S1_StationStatus: STRING;
+	S2_StationStatus: STRING;
+	S3_StationStatus: STRING;
+	S4_StationStatus: STRING;
+	S5_StationStatus: STRING;
+	S6_StationStatus: STRING;
+
+(*************************************************************************************)
+(***************STATUS OF CYLINDER*******************)
+(*************************************************************************************)
+	S1_SingOffsetBwd AT %MX0.1205.0:BOOL;
+	S1_SingOffsetFwd AT %MX0.1205.1:BOOL;
+	S1_SingOpn AT %MX0.1205.2:BOOL;
+	S1_SingCls AT %MX0.1205.3:BOOL;
+	S1_SingAccOpn AT %MX0.1205.4:BOOL;
+	S1_SingAccCls AT %MX0.1205.5:BOOL;
+	S1_WPOrientationUp AT %MX0.1205.6:BOOL;
+	S1_WPOrientationDn AT %MX0.1205.7:BOOL;
+	S1_PnpBwd AT %MX0.1206.0:BOOL;
+	S1_PnpFwd AT %MX0.1206.1 :BOOL;
+	S1_PnPUp AT %MX0.1206.2:BOOL;
+	S1_PnPDn AT %MX0.1206.3:BOOL;
+	S1_PnpRotBwd AT %MX0.1206.4:BOOL;
+	S1_PnpRotFwd AT %MX0.1206.5:BOOL;
+	S1_PnpOpn1 AT %MX0.1206.6:BOOL;
+	S1_PnpCls1 AT %MX0.1206.7:BOOL;
+	S1_PnpOpn2 AT %MX0.1207.0:BOOL;
+	S1_PnpCls2 AT %MX0.1207.1:BOOL;
+	S1_BackJigRelBwd AT %MX0.1207.2 :BOOL;
+	S1_BackJigRelFwd AT %MX0.1207.3:BOOL;
+	S1_SideJigRelBwd AT %MX0.1207.4:BOOL;
+	S1_SideJigRelFwd AT %MX0.1207.5:BOOL;
+
+	S2_iDCheckBwd AT %MX0.1208.0:BOOL;
+	S2_iDCheckFwd AT %MX0.1208.1:BOOL;
+
+	S3_Sing1Opn AT %MX0.1209.0:BOOL;
+	S3_Sing1Cls AT %MX0.1209.1:BOOL;
+	S3_Sing2Opn AT %MX0.1209.2:BOOL;
+	S3_Sing2Cls AT %MX0.1209.3:BOOL;
+	S3_Sing3Opn AT %MX0.1209.4:BOOL;
+	S3_Sing3Cls AT %MX0.1209.5:BOOL;
+	S3_Sing4Opn AT %MX0.1209.6:BOOL;
+	S3_Sing4Cls AT %MX0.1209.7:BOOL;
+	S3_PushBwd AT %MX0.1210.0:BOOL;
+	S3_PushFwd AT %MX0.1210.1:BOOL;
+	S3_LocUp AT %MX0.1210.2:BOOL;
+	S3_LocDn AT %MX0.1210.3:BOOL;
+	S3_DischargeRun AT %MX0.1210.4:BOOL;
+	S3_CatchBlowRun AT %MX0.1216.0:BOOL;
+
+
+
+
+	S3_PrePushBwd  AT %MX0.1211.4:BOOL;
+	S3_PrePushFwd AT %MX0.1211.5:BOOL;
+	S3_CatchBlockDn AT %MX0.1211.6:BOOL;
+	S3_CatchBlockUp AT %MX0.1211.7:BOOL;
+
+	S3_Vision1Done AT %MX0.1210.6:BOOL;
+	S3_Vision2Done AT %MX0.1210.7:BOOL;
+	S3_Vision1Busy AT %MX0.1211.2:BOOL;
+	S3_Vision2Busy AT %MX0.1211.3:BOOL;
+
+	S4_CheckBwd AT %MX0.1211.0:BOOL;
+	S4_CheckFwd AT %MX0.1211.1:BOOL;
+
+	S5_PnpBwd AT %MX0.1212.0:BOOL;
+	S5_PnpFwd AT %MX0.1212.1:BOOL;
+	S5_PnPUp AT %MX0.1212.2:BOOL;
+	S5_PnPDn AT %MX0.1212.3:BOOL;
+	S5_PnpOpn AT %MX0.1212.4:BOOL;
+	S5_PnpCls AT %MX0.1212.5:BOOL;
+	S5_PnPPusherBwd AT %MX0.1212.6:BOOL;
+	S5_PnpPusherFwd AT %MX0.1212.7:BOOL;
+	S5_BackJigRelFwd AT %MX0.1213.0 :BOOL;
+	S5_BackJigRelBwd AT %MX0.1213.1:BOOL;
+	S5_SideJigRelFwd AT %MX0.1213.2 :BOOL;
+	S5_SideJigRelBwd AT %MX0.1213.3 :BOOL;
+
+	S6_PnpBwd  AT %MX0.1214.0 :BOOL;
+	S6_PnpFwd AT %MX0.1214.1:BOOL;
+	S6_PnPUp AT %MX0.1214.2:BOOL;
+	S6_PnPDn AT %MX0.1214.3:BOOL;
+	S6_PnpRotBwd AT %MX0.1214.4:BOOL;
+	S6_PnpRotFwd AT %MX0.1214.5:BOOL;
+	S6_PnpOpn AT %MX0.1214.6:BOOL;
+	S6_PnpCls AT %MX0.1214.7:BOOL;
+	S6_BackJigRelFwd AT %MX0.1215.0:BOOL;
+	S6_BackJigRelBwd AT %MX0.1215.1:BOOL;
+	S6_SideJigRelFwd AT %MX0.1215.2:BOOL;
+	S6_SideJigRelBwd AT %MX0.1215.3:BOOL;
+	S6_SingOpn AT %MX0.1215.4:BOOL;
+	S6_SingCls  AT %MX0.1215.5:BOOL;
+	S6_EmptyChkCamBusy AT %MX0.1215.6:BOOL;
+	S6_EmptyChkCamDone AT %MX0.1215.7:BOOL;
+
+
+(*****************************************************************)
+(***************INDERLOCK OF CYLINDER*******************)
+(*****************************************************************)
+	P1_SingOffsetBwd_MechLock AT %MX0.204.0:BOOL;
+	P1_SingOffsetFwd_MechLock AT %MX0.204.1:BOOL;
+	P1_SingOpn_MechLock AT %MX0.204.2:BOOL;
+	P1_SingCls_MechLock AT %MX0.204.3:BOOL;
+	P1_SingAccOpn_MechLock AT %MX0.204.4:BOOL;
+	P1_SingAccCls_MechLock AT %MX0.204.5:BOOL;
+	P1_WPOrientationUp_MechLock AT %MX0.204.6:BOOL;
+	P1_WPOrientationDn_MechLock AT %MX0.204.7:BOOL;
+	P1_PnpBwd_MechLock AT %MX0.205.0:BOOL;
+	P1_PnpFwd_MechLock AT %MX0.205.1:BOOL;
+	P1_PnPUp_MechLock AT %MX0.205.2:BOOL;
+	P1_PnPDn_MechLock AT %MX0.205.3:BOOL;
+	P1_PnpRotBwd_MechLock AT %MX0.205.4:BOOL;
+	P1_PnpRotFwd_MechLock AT %MX0.205.5:BOOL;
+	P1_PnpOpn1_MechLock AT %MX0.205.6:BOOL;
+	P1_PnpCls1_MechLock AT %MX0.205.7:BOOL;
+	P1_PnpOpn2_MechLock AT %MX0.206.0:BOOL;
+	P1_PnpCls2_MechLock AT %MX0.206.1:BOOL;
+	P1_BackJigRelBwd_MechLock AT %MX0.206.2:BOOL;
+	P1_BackJigRelFwd_MechLock AT %MX0.206.3:BOOL;
+	P1_SideJigRelBwd_MechLock AT %MX0.206.4:BOOL;
+	P1_SideJigRelFwd_MechLock AT %MX0.206.5:BOOL;
+
+	P2_iDCheckBwd_MechLock AT %MX0.207.0:BOOL;
+	P2_iDCheckFwd_MechLock AT %MX0.207.1:BOOL;
+
+	P3_Sing1Opn_MechLock AT %MX0.208.0:BOOL;
+	P3_Sing1Cls_MechLock AT %MX0.208.1:BOOL;
+	P3_Sing2Opn_MechLock AT %MX0.208.2:BOOL;
+	P3_Sing2Cls_MechLock AT %MX0.208.3:BOOL;
+	P3_Sing3Opn_MechLock AT %MX0.208.4:BOOL;
+	P3_Sing3Cls_MechLock AT %MX0.208.5:BOOL;
+	P3_Sing4Opn_MechLock AT %MX0.208.6:BOOL;
+	P3_Sing4Cls_MechLock AT %MX0.208.7:BOOL;
+	P3_PushBwd_MechLock AT %MX0.209.0:BOOL;
+	P3_PushFwd_MechLock AT %MX0.209.1:BOOL;
+	P3_LocUp_MechLock AT %MX0.209.2:BOOL;
+	P3_LocDn_MechLock AT %MX0.209.3:BOOL;
+	P3_PrePushBwd_MechLock AT %MX0.209.4:BOOL;
+	P3_PrePushFwd_MechLock AT %MX0.209.5:BOOL;
+	P3_CatchBlockDn_MechLock AT %MX0.209.6:BOOL;
+	P3_CatchBlockUp_MechLock AT %MX0.209.7:BOOL;
+
+	P4_CheckBwd_MechLock AT %MX0.210.0:BOOL;
+	P4_CheckFwd_MechLock AT %MX0.210.1:BOOL;
+
+	P5_PnpBwd_MechLock AT %MX0.211.0:BOOL;
+	P5_PnpFwd_MechLock AT %MX0.211.1:BOOL;
+	P5_PnPUp_MechLock AT %MX0.211.2:BOOL;
+	P5_PnPDn_MechLock AT %MX0.211.3:BOOL;
+	P5_PnpOpn_MechLock AT %MX0.211.4:BOOL;
+	P5_PnpCls_MechLock AT %MX0.211.5:BOOL;
+	P5_PnpPusherBwd_MechLock AT %MX0.211.6:BOOL;
+	P5_PnpPusherFwd_MechLock AT %MX0.211.7:BOOL;
+	P5_BackJigRelFwd_MechLock AT %MX0.212.0:BOOL;
+	P5_BackJigRelBwd_MechLock AT %MX0.212.1:BOOL;
+	P5_SideJigRelFwd_MechLock AT %MX0.212.2:BOOL;
+	P5_SideJigRelBwd_MechLock AT %MX0.212.3:BOOL;
+
+	P6_PnpBwd_MechLock AT %MX0.213.0:BOOL;
+	P6_PnpFwd_MechLock AT %MX0.213.1:BOOL;
+	P6_PnPUp_MechLock AT %MX0.213.2:BOOL;
+	P6_PnPDn_MechLock AT %MX0.213.3:BOOL;
+	P6_PnpRotBwd_MechLock AT %MX0.213.4:BOOL;
+	P6_PnpRotFwd_MechLock AT %MX0.213.5:BOOL;
+	P6_PnpOpn_MechLock AT %MX0.213.6:BOOL;
+	P6_PnpCls_MechLock AT %MX0.213.7:BOOL;
+	P6_BackJigRelFwd_MechLock AT %MX0.214.0:BOOL;
+	P6_BackJigRelBwd_MechLock AT %MX0.214.1:BOOL;
+	P6_SideJigRelFwd_MechLock AT %MX0.214.2:BOOL;
+	P6_SideJigRelBwd_MechLock AT %MX0.214.3:BOOL;
+	P6_SingOpn_MechLock AT %MX0.214.4:BOOL;
+	P6_SingCls_MechLock AT %MX0.214.5:BOOL;
+	P6_EmptyCheckUp_MechLock AT %MX0.214.6:BOOL;
+	P6_EmptyCheckDn_MechLock AT %MX0.214.7:BOOL;
+END_VAR
+
+(* @OBJECT_END := 'Global_Variables_Modbus_Status' *)
+(* @CONNECTIONS := Global_Variables_Modbus_Status
+FILENAME : ''
+FILETIME : 0
+EXPORT : 0
+NUMOFCONNECTIONS : 0
+*)

@@ -1,0 +1,110 @@
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '59392' *)
+PROGRAM IFM_O2D_Vision_Output
+VAR
+
+	P3_Pole1_2_Checker: IFM_O2D_Vision_Ctrl;
+	P3_Pole3_4_Checker: IFM_O2D_Vision_Ctrl;
+
+	P3_TempLane1WithSpring:BOOL;
+	P3_TempLane2WithSpring:BOOL;
+	P3_TempLane3WithSpring:BOOL;
+	P3_TempLane4WithSpring:BOOL;
+
+	P6_EmptyCheckResult_1	:	BOOL;
+	P6_EmptyCheckResult_2	:	BOOL;
+
+	EmptyCheckVisionCtrl: IFM_O2D_Vision_Ctrl;
+END_VAR
+(* @END_DECLARATION := '0' *)
+(* P3 - Checker 1 - Check Catch with Spring Present for Pole 1 & 2 *)
+
+IF EnableCatchVisioncheck AND NOT T3_BypassCatchVision OR ManualMode THEN
+	P3_Pole1_2_Checker(
+		In_Enable				:= NOT Trouble,
+		In_Reset				:= Reset,
+		In_Trigger				:= T3_Vision1Trigger OR A3_Vision1Trigger OR Org3_Vision1Trig ,
+		In_CheckerRdy		:=I3_Vision1Ready,
+		In_CheckerOut1		:= I3_Vision1Out1,
+		In_CheckerOut2		:= I3_Vision1Out2,
+		Out_CheckerBusy		=> S3_Vision1Busy,
+		Out_CheckerTOut		=> E3_Vision1Timeout,
+		Out_CheckerDone	=> S3_Vision1Done,
+		Out_CheckerTrigger	=> O3_Vision1Trigger,
+		Out_CheckerOut1		=> P3_TempLane1WithSpring,
+		Out_CheckerOut2		=> P3_TempLane2WithSpring);
+
+	T3_TempLane1WithSpring 	:= P3_TempLane1WithSpring;
+	T3_TempLane2WithSpring 	:= P3_TempLane2WithSpring;
+
+	(* P3 - Checker 2 - Check Catch with Spring Present for Pole 3 & 4 *)
+
+	P3_Pole3_4_Checker(
+		In_Enable				:= NOT Trouble,
+		In_Reset				:= Reset,
+		In_Trigger				:= T3_Vision2Trigger OR A3_Vision2Trigger OR Org3_Vision2Trig ,
+		In_CheckerRdy		:=I3_Vision2Ready,
+		In_CheckerOut1		:= I3_Vision2Out1,
+		In_CheckerOut2		:= I3_Vision2Out2,
+		Out_CheckerBusy		=> S3_Vision2Busy,
+		Out_CheckerTOut		=> E3_Vision2Timeout,
+		Out_CheckerDone	=> S3_Vision2Done,
+		Out_CheckerTrigger	=> O3_Vision2Trigger,
+		Out_CheckerOut1		=> P3_TempLane3WithSpring,
+		Out_CheckerOut2		=> P3_TempLane4WithSpring);
+
+	T3_TempLane3WithSpring 	:= P3_TempLane3WithSpring;
+	T3_TempLane4WithSpring 	:= P3_TempLane4WithSpring;
+
+
+(*Vision For Auto Running *)
+	IF A3_Vision1Trigger AND S3_Vision1Done THEN
+		IF A3_RunLane1Req THEN
+			A3_Lane1WithSpring 		:= P3_TempLane1WithSpring;
+			A3_Lane1WithoutSpring 	:= NOT P3_TempLane1WithSpring;
+		END_IF
+		IF A3_RunLane2Req THEN
+			A3_Lane2WithSpring 		:= P3_TempLane2WithSpring;
+			A3_Lane2WithoutSpring 	:= NOT P3_TempLane2WithSpring;
+		END_IF
+	END_IF
+	
+	IF A3_Vision2Trigger AND S3_Vision2Done THEN
+		IF A3_RunLane3Req THEN
+			A3_Lane3WithSpring 		:= P3_TempLane3WithSpring;
+			A3_Lane3WithoutSpring 	:= NOT P3_TempLane3WithSpring;
+		END_IF
+		IF A3_RunLane4Req THEN
+			A3_Lane4WithSpring 		:= P3_TempLane4WithSpring;
+			A3_Lane4WithoutSpring 	:= NOT P3_TempLane4WithSpring;
+		END_IF
+	END_IF
+
+END_IF
+
+T6_EmptyChkCamTrig;
+EmptyCheckVisionCtrl(
+	In_Enable:= NOT Trouble,
+	In_Reset:= Reset,
+	In_Trigger:= A6_EmptyChkCamTrig OR T6_EmptyChkCamTrig,
+	In_CheckerRdy:= I6_EmptyChkCamRdy,
+	In_CheckerOut1:=(*I6_EmptyChkCamProd1*)I6_EmptyChkCamOut ,
+	In_CheckerOut2:=I6_EmptyChkCamProd2 ,
+	in_MinimumTriggerDuration:= T#20ms,
+	Out_CheckerBusy=>S6_EmptyChkCamBusy ,
+	Out_CheckerTOut=>E6_EmptyChkCamTO ,
+	Out_CheckerDone=>S6_EmptyChkCamDone ,
+	Out_CheckerTrigger=>O6_EmptyChkCamTrig ,
+	Out_CheckerOut1=>P6_EmptyCheckResult_1 ,
+	Out_CheckerOut2=>P6_EmptyCheckResult_2 );
+
+IF A6_EmptyChkCamTrig AND S6_EmptyChkCamDone THEN
+	A6_EmptyChkResult_1 := P6_EmptyCheckResult_1;
+	A6_EmptyChkResult_2 := P6_EmptyCheckResult_2;
+END_IF
+
+
+END_PROGRAM

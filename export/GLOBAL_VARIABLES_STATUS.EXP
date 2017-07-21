@@ -1,0 +1,118 @@
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @GLOBAL_VARIABLE_LIST := 'Global_Variables_Status' *)
+(* @PATH := '' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+VAR_GLOBAL
+(********************Memory area used as for Status: ********************)
+(****MW0.100-MW0.106 (MD0.50-MD0.53)****)
+(****************************************************************************)
+
+(******************GLOBAL STATUS******************)
+	Clock_100ms: BOOL;
+	Clock_300ms:BOOL;
+	IndexAtOrigin:BOOL;
+	P1DivOrigin:BOOL;
+	P1PnpOrigin:BOOL;
+	P1Origin AT %MX0.200.0:BOOL;
+	P2Origin AT %MX0.200.1:BOOL;
+	P3Origin AT %MX0.200.2:BOOL;
+	P4Origin AT %MX0.200.3:BOOL;
+	P5Origin AT %MX0.200.4:BOOL;
+	P6Origin AT %MX0.200.5:BOOL;
+
+	P1_OrgSearchRun:BOOL;
+	P2_OrgSearchRun:BOOL;
+	P3_OrgSearchRun:BOOL;
+	P4_OrgSearchRun:BOOL;
+	P5_OrgSearchRun:BOOL;
+	P6_OrgSearchRun:BOOL;
+
+	AutoMode AT %MX0.202.4:BOOL;
+	ManualMode AT %MX0.202.5:BOOL;
+
+	OriginSchRun AT %MX0.202.0:BOOL;
+	Inx_atAutoPos AT %MX0.202.1:BOOL;
+	InxOrigin  AT %MX0.202.2:BOOL;
+	AllOrigin AT %MX0.202.3:BOOL;
+	IndexCurrPos :WORD:=1;
+	StationConveyorMessage: BOOL;
+	Trouble:BOOL;
+	AutoPBMem:BOOL;
+	AutoRunning AT %MX0.203.0:BOOL;
+	NotAutoRunning AT %MX0.203.1:BOOL;
+	StopPressed AT %MX0.203.2:BOOL;
+
+	Stop:BOOL;
+	Reset:BOOL;
+	DryRun:BOOL;
+	EndProdWPCleared:BOOL;
+	AlwaysOff:BOOL;
+	AlwaysOn:BOOL;
+
+	BlockP1Auto:BOOL;
+	BlockP2Auto:BOOL;
+	BlockP3Auto:BOOL;
+	BlockP4Auto:BOOL;
+	BlockP5Auto:BOOL;
+	BlockP6Auto:BOOL;
+
+	InxClearToRot:BOOL;
+	P1IndexClr:BOOL;
+	P2IndexClr:BOOL;
+	P3IndexClr:BOOL;
+	P4IndexClr:BOOL;
+	P5IndexClr:BOOL;
+	P6IndexClr:BOOL;
+
+	A1_DivAutoRun:BOOL;
+	A1_AutoRun:BOOL;
+	A1_PickAutoRun:BOOL;
+	A2_AutoRun:BOOL;
+	A3_AutoRun:BOOL;
+	A4_AutoRun:BOOL;
+	A5_AutoRun:BOOL;
+	A6_AutoRun:BOOL;
+
+	A_InxRunning:BOOL;
+	A_NoStationRunning1:BOOL;
+	A_NoStationRunning:BOOL;
+	A1_DivRunning:BOOL;
+	A1_Running:BOOL;
+	A1_PickRunning:BOOL;
+	A2_Running:BOOL;
+	A3_Running:BOOL;
+	A4_Running:BOOL;
+	A5_Running:BOOL;
+	A6_Running:BOOL;
+
+	AllStationRdy:BOOL;
+	P1DivRdy:BOOL;
+	P1Rdy:BOOL;
+	P2Rdy:BOOL;
+	P3Rdy:BOOL;
+	P4Rdy:BOOL;
+	P5Rdy:BOOL;
+	P6Rdy:BOOL;
+
+	AllStationNoWP:BOOL;
+	P1NoWP:BOOL;
+	P2NoWP:BOOL;
+	P3NoWP:BOOL;
+	P4NoWP:BOOL;
+	P5NoWP:BOOL;
+	P6NoWP:BOOL;
+
+	Clock1: BOOL;
+	Clock2: BOOL;
+	ErrDetection: BOOL;
+	IndexHomed: BOOL;
+END_VAR
+
+(* @OBJECT_END := 'Global_Variables_Status' *)
+(* @CONNECTIONS := Global_Variables_Status
+FILENAME : ''
+FILETIME : 0
+EXPORT : 0
+NUMOFCONNECTIONS : 0
+*)

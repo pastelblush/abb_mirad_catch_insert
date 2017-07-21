@@ -1,0 +1,18 @@
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @GLOBAL_VARIABLE_LIST := 'Global_Variables_Modbus_Massage' *)
+(* @PATH := '' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+VAR_GLOBAL
+	T_HMI_Massage AT %MW1.190 :WORD;
+	T_BypassMassageStep : WORD;
+	T_MassageStep : WORD;
+END_VAR
+
+(* @OBJECT_END := 'Global_Variables_Modbus_Massage' *)
+(* @CONNECTIONS := Global_Variables_Modbus_Massage
+FILENAME : ''
+FILETIME : 0
+EXPORT : 0
+NUMOFCONNECTIONS : 0
+*)

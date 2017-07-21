@@ -1,0 +1,478 @@
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @GLOBAL_VARIABLE_LIST := 'Global_Variables_TouchPanel1' *)
+(* @PATH := '' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '4096' *)
+VAR_GLOBAL
+(*******************************************************************************************)
+(*Memory area used for Touch Panel Interfacing:
+MW0.0-MW0.50 (MB0.0-MB0.100/MD0.0-MD0.25) for the IO mapping display
+MW0.550-MW0.580 (MX0.1100.0-MX0.1160.7) for function trigger
+MW0.1000-MW0.1001 (MD0.500) for current screen and change to screen
+MW0.1002-MW0.1100 (MD0.501-MD0.550) for data*)
+(*******************************************************************************************)
+
+(******************GLOBAL HMI******************)
+	T_Word1 AT %MD0.275:DWORD;
+	T_Word2 AT %MD0.276:DWORD;
+	T_Word3 AT %MD0.277:DWORD;
+	T_Word4 AT %MD0.278:DWORD;
+	T_Word5 AT %MD0.279:DWORD;
+
+	T_ResetAllWPMem AT %MX0.1100.0:BOOL;
+	T_Auto AT %MX0.1100.1:BOOL;
+	T_Start AT %MX0.1100.2:BOOL;
+	T_Stop AT %MX0.1100.3:BOOL;
+	T_Reset AT %MX0.1100.4:BOOL;
+	T_EndProd AT %MX0.1100.5:BOOL;
+	T_OriginSearch AT %MX0.1100.6:BOOL;
+	T_ResetAllCnt AT %MX0.1100.7:BOOL;
+
+	T_McHomedPos AT %MX0.1101.6:BOOL;
+	T_InxClearToRot AT %MX0.1120.7:BOOL;
+	T_ManualMode AT %MX0.1121.0:BOOL;
+	T_AutoMode AT %MX0.1121.7:BOOL;
+	T_Trouble AT %MX0.1121.1:BOOL;
+	T_AutoRunning AT %MX0.1121.2:BOOL;
+	T_Catch1Run AT %MX0.1121.3:BOOL;
+	T_Catch2Run AT %MX0.1121.4:BOOL;
+	T_Catch3Run AT %MX0.1121.5:BOOL;
+	T_Catch4Run AT %MX0.1121.6:BOOL;
+	(*Recipe Restore from USB*)
+	T_RestoreRecipeFromUSB AT %MX0.1123.5:BOOL;
+	T_RecipeDownloading AT %MX0.1123.6:BOOL;
+	T_RecipeDownloading_Comp AT %MX0.1123.7:BOOL;
+	T_RecipeDownloading_Done AT %MX0.1124.0:BOOL;
+	(*Recipe Save To USB*)
+	T_StoreRecipeToUSB AT %MX0.1124.1:BOOL;
+	T_RecipeUpoading AT %MX0.1124.2:BOOL;
+	T_RecipeUploading_Comp AT %MX0.1124.3:BOOL;
+	T_RecipeUploading_Done AT %MX0.1124.4:BOOL;
+	T_RecipeExportImportBusy AT %MX0.1124.6:BOOL;
+	T_NotAutoRunning AT %MX0.1124.7:BOOL;
+	T_OneCycleStepRun AT %MX0.1124.5:BOOL;
+	T_OriginSchRun AT%MX0.1125.0:BOOL;
+
+	T_InxReset AT %MX0.1104.0:BOOL;
+	T_InxBwdToOrg AT %MX0.1104.1:BOOL;
+	T_InxStart AT %MX0.1104.2:BOOL;
+	T_InxBrakeRel AT %MX0.1104.3:BOOL;
+	T_InxSpare AT %MX0.1104.4:BOOL;
+	T_InxAutoPos AT %MX0.1104.5:BOOL;
+	T_InxInOriginPos AT %MX0.1104.6:BOOL;
+
+	S_ClearRecipeData AT %MX0.1120.3:BOOL;
+	T_ClearRecipeData AT %MX0.1120.2:BOOL;
+	T_DispCatchType AT %MX0.1003.0:BOOL;
+	T_CatchTypeTemp AT %MX0.1003.1:BOOL;
+	T_EnterConfig AT %MX0.1105.7: BOOL;
+	T_SearchData AT %MX0.1119.7:BOOL;
+	T_ExitConfigOK AT %MX0.1108.7:BOOL;
+	T_EnteredNewData AT %MX0.1119.4:BOOL;
+	T_SaveNewData AT %MX0.1119.2:BOOL;
+	T_StepStopLp AT  %MX0.1120.1:BOOL;
+	T_SaveNewDataOK AT %MX0.1119.3:BOOL;
+	T_InterlockClearRecipeData AT %MX0.1120.4:BOOL;
+
+
+
+	T1_StationOriginPos AT %MX0.1109.2:BOOL;
+	T2_StationOriginPos AT %MX0.1109.3:BOOL;
+	T3_StationOriginPos AT %MX0.1109.4:BOOL;
+	T4_StationOriginPos AT %MX0.1109.5:BOOL;
+	T5_StationOriginPos AT %MX0.1109.6:BOOL;
+	T6_StationOriginPos AT %MX0.1109.7:BOOL;
+
+	T1_Status :STRING;
+	T2_Status :STRING;
+	T3_Status :STRING;
+	T4_Status :STRING;
+	T5_Status :STRING;
+	T6_Status :STRING;
+
+(***************HMI FOR CYLINDER*******************)
+	T1_SingOffsetBwd AT %MX0.1106.0:BOOL;
+	T1_SingOffsetFwd AT %MX0.1106.1:BOOL;
+	T1_SingOpn AT %MX0.1106.2:BOOL;
+	T1_SingCls AT %MX0.1106.3:BOOL;
+	T1_SingAccOpn AT %MX0.1106.4:BOOL;
+	T1_SingAccCls AT %MX0.1106.5:BOOL;
+	T1_WPOrientationUp AT %MX0.1106.6:BOOL;
+	T1_WPOrientationDn AT %MX0.1106.7:BOOL;
+	T1_PnpBwd AT %MX0.1107.0:BOOL;
+	T1_PnpFwd AT %MX0.1107.1:BOOL;
+	T1_PnPUp AT %MX0.1107.2:BOOL;
+	T1_PnPDn AT %MX0.1107.3:BOOL;
+	T1_PnpRotBwd AT %MX0.1107.4:BOOL;
+	T1_PnpRotFwd AT %MX0.1107.5:BOOL;
+	T1_PnpOpn1 AT %MX0.1107.6:BOOL;
+	T1_PnpCls1 AT %MX0.1107.7:BOOL;
+	T1_PnpOpn2 AT %MX0.1108.0:BOOL;
+	T1_PnpCls2 AT %MX0.1108.1:BOOL;
+	T1_BackJigRelBwd  AT %MX0.1108.2:BOOL;
+	T1_BackJigRelFwd AT %MX0.1108.3:BOOL;
+	T1_SideJigRelBwd AT %MX0.1108.4:BOOL;
+	T1_SideJigRelFwd AT %MX0.1108.5:BOOL;
+
+	T2_iDCheckBwd AT %MX0.1109.0:BOOL;
+	T2_iDCheckFwd AT %MX0.1109.1:BOOL;
+	T2_IDCheck1PE AT %MX0.1117.0:BOOL;
+	T2_IDCheck2PE AT %MX0.1117.1:BOOL;
+	T2_IDCheck3PE AT %MX0.1117.2:BOOL;
+	T2_IDCheck4PE AT %MX0.1117.3:BOOL;
+
+	T3_Sing1Opn AT %MX0.1110.0:BOOL;
+	T3_Sing1Cls AT %MX0.1110.1:BOOL;
+	T3_Sing2Opn AT %MX0.1110.2:BOOL;
+	T3_Sing2Cls AT %MX0.1110.3:BOOL;
+	T3_Sing3Opn AT %MX0.1110.4:BOOL;
+	T3_Sing3Cls AT %MX0.1110.5:BOOL;
+	T3_Sing4Opn AT %MX0.1110.6:BOOL;
+	T3_Sing4Cls AT %MX0.1110.7:BOOL;
+	T3_PushBwd AT %MX0.1111.0:BOOL;
+	T3_PushFwd AT %MX0.1111.1:BOOL;
+	T3_LocUp AT %MX0.1111.2:BOOL;
+	T3_LocDn AT %MX0.1111.3:BOOL;
+	T3_PushSupportBwd AT %MX0.1111.4:BOOL;
+	T3_PushSupportFwd AT %MX0.1111.5:BOOL;
+	T3_BypassCatchVision AT %MX0.1111.6:BOOL;
+	T3_DischargeOn AT %MX0.1113.6:BOOL;
+	T3_DischargeOff AT %MX0.1113.7:BOOL;
+	T3_CatchBlowOn AT%MX0.1125.1:BOOL;
+	T3_CatchBlowOff AT%MX0.1125.2:BOOL; (*******************************)
+
+
+
+	T3_Vision1Trigger AT %MX0.1116.0:BOOL;
+	T3_Vision2Trigger AT %MX0.1116.1:BOOL;
+	T3_Catch1Run  AT %MX0.1116.2:BOOL;
+	T3_Catch2Run  AT %MX0.1116.3:BOOL;
+	T3_Catch3Run  AT %MX0.1116.4:BOOL;
+	T3_Catch4Run  AT %MX0.1116.5:BOOL;
+	T3_TempLane1WithSpring AT %MX0.1117.4:BOOL;
+	T3_TempLane2WithSpring AT %MX0.1117.5:BOOL;
+	T3_TempLane3WithSpring AT %MX0.1117.6:BOOL;
+	T3_TempLane4WithSpring AT %MX0.1117.7:BOOL;
+	T3_PrePushBwd AT %MX0.1119.0:BOOL;
+	T3_PrePushFwd AT %MX0.1119.1:BOOL;
+	T3_CatchBlockDn AT %MX0.1119.2:BOOL;
+	T3_CatchBlockUp AT %MX0.1119.3:BOOL;
+
+	T3_CatchTesting AT %MX0.1119.5:BOOL;
+
+	T4_CheckBwd AT %MX0.1112.0:BOOL;
+	T4_CheckFwd AT %MX0.1112.1:BOOL;
+	T4_Catch1PE AT %MX0.1118.0:BOOL;
+	T4_Catch2PE AT %MX0.1118.1:BOOL;
+	T4_Catch3PE AT %MX0.1118.2:BOOL;
+	T4_Catch4PE AT %MX0.1118.3:BOOL;
+
+	T5_PnpBwd AT %MX0.1112.2:BOOL;
+	T5_PnpFwd AT %MX0.1112.3:BOOL;
+	T5_PnPUp AT %MX0.1112.4:BOOL;
+	T5_PnPDn AT %MX0.1112.5:BOOL;
+	T5_PnpOpn AT %MX0.1112.6:BOOL;
+	T5_PnpCls AT %MX0.1112.7:BOOL;
+	T5_PnpPusherBwd AT %MX0.1113.0:BOOL;
+	T5_PnpPusherFwd AT %MX0.1113.1:BOOL;
+	T5_BackJigRelFwd  AT %MX0.1113.2:BOOL;
+	T5_BackJigRelBwd AT %MX0.1113.3:BOOL;
+	T5_SideJigRelFwd AT %MX0.1113.4:BOOL;
+	T5_SideJigRelBwd AT %MX0.1113.5:BOOL;
+
+	T6_PnpBwd  AT %MX0.1114.0:BOOL;
+	T6_PnpFwd AT %MX0.1114.1:BOOL;
+	T6_PnPUp AT %MX0.1114.2:BOOL;
+	T6_PnPDn AT %MX0.1114.3:BOOL;
+	T6_PnpRotBwd AT %MX0.1114.4:BOOL;
+	T6_PnpRotFwd AT %MX0.1114.5:BOOL;
+	T6_PnpOpn AT %MX0.1114.6:BOOL;
+	T6_PnpCls AT %MX0.1114.7:BOOL;
+	T6_BackJigRelFwd AT %MX0.1115.0:BOOL;
+	T6_BackJigRelBwd AT %MX0.1115.1:BOOL;
+	T6_SideJigRelFwd AT %MX0.1115.2:BOOL;
+	T6_SideJigRelBwd AT %MX0.1115.3:BOOL;
+	T6_SingOpn AT %MX0.1115.4:BOOL;
+	T6_SingCls AT %MX0.1115.5:BOOL;
+	T6_EmptyCheckUp AT %MX0.1115.6:BOOL;
+	T6_EmptyCheckDn AT %MX0.1115.7:BOOL;
+
+	T6_EmptyChkCamTrig AT %MX0.1126.0:BOOL;
+	T6_BypassEmptyCheck AT %MX0.1126.1:BOOL;
+	T6_EmptyCheckResult_1 AT %MX0.1126.2:BOOL;
+	T6_EmptyCheckResult_2 AT %MX0.1126.3:BOOL;
+
+	CurrentScreen AT %MW0.1000:WORD;
+	ChangeToScreen AT %MW0.1001:WORD;
+	Curr_Step_Station AT %MW0.1002:WORD;
+
+(***************PRODUCT DETAILS*******************)
+	(*Product Number*)
+	ProdNumStartByteTemp AT %MD1.1200:DWORD;
+	ProdNumStartByte2Temp AT %MD1.1201:DWORD;
+	ProdNumStartByte3Temp AT %MD1.1202:DWORD;
+	ProdNumStartByte4Temp AT %MD1.1203:DWORD;
+	ProdNumStartByte5Temp AT %MD1.1204:DWORD;
+	ProdNumStartByte6Temp AT %MD1.1205:DWORD;
+	ProdNumStartByte7Temp AT %MD1.1206: DWORD;
+	ProdNumStartByte8Temp AT %MD1.1207:DWORD;
+	ProdNumStartByte9Temp AT %MD1.1208:DWORD;
+	ProdNumStartByte10Temp AT %MD1.1209:DWORD;
+
+	(*Pole Number*)
+	PoleNumStartByteTemp AT %MD1.1300:DWORD;
+	PoleNumStartByte2Temp AT %MD1.1301:DWORD;
+	PoleNumStartByte3Temp AT %MD1.1302:DWORD;
+	PoleNumStartByte4Temp AT %MD1.1303:DWORD;
+	PoleNumStartByte5Temp AT %MD1.1304:DWORD;
+	PoleNumStartByte6Temp AT %MD1.1305:DWORD;
+	PoleNumStartByte7Temp AT %MD1.1306: DWORD;
+	PoleNumStartByte8Temp AT %MD1.1307:DWORD;
+	PoleNumStartByte9Temp AT %MD1.1308:DWORD;
+	PoleNumStartByte10Temp AT %MD1.1309:DWORD;
+
+	(*NA Pole Number*)
+	NAPoleNumStartByte1Temp AT %MD1.1400:DWORD;
+	NAPoleNumStartByte2Temp AT %MD1.1401:DWORD;
+	NAPoleNumStartByte3Temp AT %MD1.1402:DWORD;
+	NAPoleNumStartByte4Temp AT %MD1.1403:DWORD;
+	NAPoleNumStartByte5Temp AT %MD1.1404:DWORD;
+	NAPoleNumStartByte6Temp AT %MD1.1405:DWORD;
+	NAPoleNumStartByte7Temp AT %MD1.1406: DWORD;
+	NAPoleNumStartByte8Temp AT %MD1.1407:DWORD;
+	NAPoleNumStartByte9Temp AT %MD1.1408:DWORD;
+	NAPoleNumStartByte10Temp AT %MD1.1409:DWORD;
+
+	T_ProdNumDispW01 AT %MW1.70 :WORD;
+	T_ProdNumDispW02 AT %MW1.71 :WORD;
+	T_ProdNumDispW03 AT %MW1.72 :WORD;
+	T_ProdNumDispW04 AT %MW1.73 :WORD;
+	T_ProdNumDispW05 AT %MW1.74 :WORD;
+	T_ProdNumDispW06 AT %MW1.75 :WORD;
+	T_ProdNumDispW07 AT %MW1.76 :WORD;
+	T_ProdNumDispW08 AT %MW1.77 :WORD;
+	T_ProdNumDispW09 AT %MW1.78 :WORD;
+	T_ProdNumDispW010 AT %MW1.79 :WORD;
+	T_ProdNumDispW011 AT %MW1.80 :WORD;
+	T_ProdNumDispW012 AT %MW1.81 :WORD;
+	T_ProdNumDispW013 AT %MW1.82 :WORD;
+	T_ProdNumDispW014 AT %MW1.83 :WORD;
+	T_ProdNumDispW015 AT %MW1.84 :WORD;
+	T_ProdNumDispW016 AT %MW1.85:WORD;
+	T_ProdNumDispW017 AT %MW1.86 :WORD;
+	T_ProdNumDispW018 AT %MW1.87 :WORD;
+
+	T_ProdNumTempW01 AT %MW1.90 :WORD;
+	T_ProdNumTempW02 AT %MW1.91 :WORD;
+	T_ProdNumTempW03 AT %MW1.92 :WORD;
+	T_ProdNumTempW04 AT %MW1.93 :WORD;
+	T_ProdNumTempW05 AT %MW1.94 :WORD;
+	T_ProdNumTempW06 AT %MW1.95 :WORD;
+	T_ProdNumTempW07 AT %MW1.96 :WORD;
+	T_ProdNumTempW08 AT %MW1.97 :WORD;
+	T_ProdNumTempW09 AT %MW1.98 :WORD;
+	T_ProdNumTempW010 AT %MW1.99 :WORD;
+	T_ProdNumTempW011 AT %MW1.100 :WORD;
+	T_ProdNumTempW012 AT %MW1.101 :WORD;
+	T_ProdNumTempW013 AT %MW1.102 :WORD;
+	T_ProdNumTempW014 AT %MW1.103 :WORD;
+	T_ProdNumTempW015 AT %MW1.104 :WORD;
+	T_ProdNumTempW016 AT %MW1.105:WORD;
+	T_ProdNumTempW017 AT %MW1.106 :WORD;
+	T_ProdNumTempW018 AT %MW1.107 :WORD;
+
+	T_PoleNumDispW01 AT %MW1.110 :WORD;
+	T_PoleNumDispW02 AT %MW1.111 :WORD;
+	T_PoleNumDispW03 AT %MW1.112 :WORD;
+	T_PoleNumDispW04 AT %MW1.113 :WORD;
+	T_PoleNumDispW05 AT %MW1.114 :WORD;
+	T_PoleNumDispW06 AT %MW1.115 :WORD;
+	T_PoleNumDispW07 AT %MW1.116 :WORD;
+	T_PoleNumDispW08 AT %MW1.117 :WORD;
+	T_PoleNumDispW09 AT %MW1.118 :WORD;
+	T_PoleNumDispW010 AT %MW1.119 :WORD;
+	T_PoleNumDispW011 AT %MW1.120 :WORD;
+	T_PoleNumDispW012 AT %MW1.121 :WORD;
+	T_PoleNumDispW013 AT %MW1.122 :WORD;
+	T_PoleNumDispW014 AT %MW1.123 :WORD;
+	T_PoleNumDispW015 AT %MW1.124 :WORD;
+	T_PoleNumDispW016 AT %MW1.125:WORD;
+	T_PoleNumDispW017 AT %MW1.126 :WORD;
+	T_PoleNumDispW018 AT %MW1.127 :WORD;
+
+	T_PoleNumTempW01 AT %MW1.130 :WORD;
+	T_PoleNumTempW02 AT %MW1.131 :WORD;
+	T_PoleNumTempW03 AT %MW1.132 :WORD;
+	T_PoleNumTempW04 AT %MW1.133 :WORD;
+	T_PoleNumTempW05 AT %MW1.134 :WORD;
+	T_PoleNumTempW06 AT %MW1.135 :WORD;
+	T_PoleNumTempW07 AT %MW1.136 :WORD;
+	T_PoleNumTempW08 AT %MW1.137 :WORD;
+	T_PoleNumTempW09 AT %MW1.138 :WORD;
+	T_PoleNumTempW010 AT %MW1.139 :WORD;
+	T_PoleNumTempW011 AT %MW1.140 :WORD;
+	T_PoleNumTempW012 AT %MW1.141 :WORD;
+	T_PoleNumTempW013 AT %MW1.142 :WORD;
+	T_PoleNumTempW014 AT %MW1.143 :WORD;
+	T_PoleNumTempW015 AT %MW1.144 :WORD;
+	T_PoleNumTempW016 AT %MW1.145:WORD;
+	T_PoleNumTempW017 AT %MW1.146 :WORD;
+	T_PoleNumTempW018 AT %MW1.147 :WORD;
+
+	T_NAPoleNumDispW01 AT %MW1.150 :WORD;
+	T_NAPoleNumDispW02 AT %MW1.151 :WORD;
+	T_NAPoleNumDispW03 AT %MW1.152 :WORD;
+	T_NAPoleNumDispW04 AT %MW1.153 :WORD;
+	T_NAPoleNumDispW05 AT %MW1.154 :WORD;
+	T_NAPoleNumDispW06 AT %MW1.155 :WORD;
+	T_NAPoleNumDispW07 AT %MW1.156 :WORD;
+	T_NAPoleNumDispW08 AT %MW1.157 :WORD;
+	T_NAPoleNumDispW09 AT %MW1.158 :WORD;
+	T_NAPoleNumDispW010 AT %MW1.159 :WORD;
+	T_NAPoleNumDispW011 AT %MW1.160 :WORD;
+	T_NAPoleNumDispW012 AT %MW1.161 :WORD;
+	T_NAPoleNumDispW013 AT %MW1.162 :WORD;
+	T_NAPoleNumDispW014 AT %MW1.163 :WORD;
+	T_NAPoleNumDispW015 AT %MW1.164 :WORD;
+	T_NAPoleNumDispW016 AT %MW1.165:WORD;
+	T_NAPoleNumDispW017 AT %MW1.166 :WORD;
+	T_NAPoleNumDispW018 AT %MW1.167 :WORD;
+
+
+
+	T_NAPoleNum AT %MW1.170:ARRAY [1..10] OF STRING(20);
+	T_NAPoleNumTempW01 AT %MW1.170 :WORD;
+	T_NAPoleNumTempW02 AT %MW1.171 :WORD;
+	T_NAPoleNumTempW03 AT %MW1.172 :WORD;
+	T_NAPoleNumTempW04 AT %MW1.173 :WORD;
+	T_NAPoleNumTempW05 AT %MW1.174 :WORD;
+	T_NAPoleNumTempW06 AT %MW1.175 :WORD;
+	T_NAPoleNumTempW07 AT %MW1.176 :WORD;
+	T_NAPoleNumTempW08 AT %MW1.177 :WORD;
+	T_NAPoleNumTempW09 AT %MW1.178 :WORD;
+	T_NAPoleNumTempW010 AT %MW1.179 :WORD;
+	T_NAPoleNumTempW011 AT %MW1.180 :WORD;
+	T_NAPoleNumTempW012 AT %MW1.181 :WORD;
+	T_NAPoleNumTempW013 AT %MW1.182 :WORD;
+	T_NAPoleNumTempW014 AT %MW1.183 :WORD;
+	T_NAPoleNumTempW015 AT %MW1.184 :WORD;
+	T_NAPoleNumTempW016 AT %MW1.185:WORD;
+	T_NAPoleNumTempW017 AT %MW1.186 :WORD;
+	T_NAPoleNumTempW018 AT %MW1.187 :WORD;
+
+	T_ProdNumTemp:STRING(16);
+	T_PoleNumTemp:STRING(16);
+	T_NAPoleNumTemp:STRING(16);
+
+(***********INPUT/OUTPUT STATUS**********)
+
+	T_InByte0 AT %MB0.0:BYTE;
+	T_InByte1 AT %MB0.1:BYTE;
+	T_InByte2 AT %MB0.2:BYTE;
+	T_InByte3 AT %MB0.3:BYTE;
+	T_InByte16 AT %MB0.4:BYTE;
+	T_InByte17 AT %MB0.5:BYTE;
+	T_InByte18 AT %MB0.6:BYTE;
+	T_InByte19 AT %MB0.7:BYTE;
+	T_InByte32 AT %MB0.8:BYTE;
+	T_InByte33 AT %MB0.9:BYTE;
+	T_InByte34 AT %MB0.10:BYTE;
+	T_InByte35 AT %MB0.11:BYTE;
+	T_InByte48 AT %MB0.12:BYTE;
+	T_InByte49 AT %MB0.13:BYTE;
+	T_InByte50 AT %MB0.14:BYTE;
+	T_InByte51 AT %MB0.15:BYTE;
+	T_InByte1000 AT %MB0.16:BYTE;
+	T_InByte1002 AT %MB0.17:BYTE;
+	T_InByte1003 AT %MB0.18:BYTE;
+
+	T_OutByte80 AT %MB0.19:BYTE;
+	T_OutByte81 AT %MB0.20:BYTE;
+	T_OutByte82 AT %MB0.21:BYTE;
+	T_OutByte104 AT %MB0.22:BYTE;
+	T_OutByte105 AT %MB0.23:BYTE;
+	T_OutByte106 AT %MB0.24:BYTE;
+	T_OutByte128 AT %MB0.25:BYTE;
+	T_OutByte129 AT %MB0.26:BYTE;
+	T_OutByte130 AT %MB0.27:BYTE;
+	T_OutByte1002 AT %MB0.28:BYTE;
+	T_OutByte1003 AT %MB0.29:BYTE;
+	T_OutByte1004 AT %MB0.30:BYTE;
+END_VAR
+
+VAR_GLOBAL RETAIN
+	T_BypassP1 AT %MX0.1101.0:BOOL;
+	T_BypassP2 AT %MX0.1101.1:BOOL;
+	T_BypassP3 AT %MX0.1101.2:BOOL;
+	T_BypassP4 AT %MX0.1101.3:BOOL;
+	T_BypassP5 AT %MX0.1101.4:BOOL;
+	T_BypassP6 AT %MX0.1101.5:BOOL;
+
+	T_DryRun AT %MX0.1103.1:BOOL;
+	T_Manual AT %MX0.1103.2:BOOL;
+	T_StepRun AT %MX0.1103.3:BOOL;
+	T_StepStop AT %MX0.1103.4:BOOL;
+	T_StepBwd AT %MX0.1103.5:BOOL;
+	T_StepFwd AT %MX0.1103.6:BOOL;
+	M_StepRun AT %MX0.1103.7:BOOL;
+
+	T_StepHome AT %MX0.1120.5:BOOL;
+	S_StepHome AT %MX0.1120.6:BOOL;
+
+	Cnt_Prod AT %MD0.503:DWORD;				(* MX0.2012*)
+	Cnt_TotalNG AT %MD0.504:DWORD; 			(* MX0.2016*)
+	Cnt_TotalProd AT %MD0.505:DWORD; 			(* MX0.2020*)
+	Mac_Cycle_Cnt  AT  %MD0.506:DWORD;		(* MX0.2024*)
+
+	SpareNGCount1 AT %MW0.1015:WORD;		(* MX0.2030*)
+	SpareNGCount2 AT %MW0.1016:WORD;		(* MX0.2032*)
+	SpareNGCount3 AT %MW0.1017:WORD;		(* MX0.2034*)
+
+	Cnt_P2iDCheck1NG AT %MW0.1018:WORD;	(* MX0.2036*)
+	Cnt_P2iDCheck2NG AT %MW0.1019:WORD;	(* MX0.2036*)
+	Cnt_P2iDCheck3NG AT %MW0.1020:WORD;	(* MX0.2036*)
+	Cnt_P2iDCheck4NG AT %MW0.1021:WORD;	(* MX0.2036*)
+
+	Cnt_P3PusherNG AT %MW0.1022:WORD;		(* MX0.2102*)
+	Cnt_P3VisionNG AT %MW0.1023:WORD;		(* MX0.2102*)
+
+	Cnt_P4Catch1NG  AT %MW0.1024:WORD;		(* MX0.2040*)
+	Cnt_P4Catch2NG  AT %MW0.1025:WORD;		(* MX0.2042*)
+	Cnt_P4Catch3NG  AT %MW0.1026:WORD;		(* MX0.2044*)
+	Cnt_P4Catch4NG  AT %MW0.1027:WORD;		(* MX0.2046*)
+
+	Inx_CurPos AT %MW0.1040:WORD;				(* MX0.2080*)
+	Inx_AutoPos AT %MW0.1041:WORD;			(* MX0.2082*)
+	CycleTime AT %MW0.1042:WORD;				(* MX0.2084*)
+	CycleTimeDisp AT %MW0.1043:WORD;			(* MX0.2086*)
+	IndexTurningTime AT %MW0.1044:WORD;		(* MX0.2088*)
+	TargetCountDisp AT %MW0.1045:WORD;		(* MX0.2090*)
+	TargetCountEntry AT %MW0.1046:WORD;		(* MX0.2092*)
+	OneCycleCount AT %MW0.1047:WORD;			(* MX0.2094*)
+	OneCycleNG AT %MW0.1048:WORD;			(* MX0.2096*)
+
+	T_CurrModelNum AT %MW0.1049:WORD;		(* MX0.2098*)
+
+	T_DispModelNum AT %MW1.200 :WORD;		(* MX1.400*)
+	T_DispModelType AT %MW1.201 :WORD;		(* MX1.402*)
+	T_DispPole AT %MW1.202 :WORD;				(* MX1.404*)
+	T_NewDispModelNum AT %MW1.203 :WORD;	(* MX1.406*)
+
+	T_OneCycleRun AT %MX0.1219.4:BOOL;
+	T_McConfig AT %MX0.1219.5:BOOL;
+	T_McConfigSave AT %MX0.1219.6:BOOL;
+	S_StepRun AT %MX0.1220.0:BOOL;
+
+	A2_CheckIDNGCount:WORD;
+	A3_VisionNGCount:WORD;
+	A4_CheckCatchNGCount:WORD;
+
+END_VAR
+
+(* @OBJECT_END := 'Global_Variables_TouchPanel1' *)
+(* @CONNECTIONS := Global_Variables_TouchPanel1
+FILENAME : ''
+FILETIME : 0
+EXPORT : 0
+NUMOFCONNECTIONS : 0
+*)
